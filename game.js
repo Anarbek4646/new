@@ -46,22 +46,62 @@ for (let i = 0; i < 16; i++) {
 
 //for heroes
 
-function kthulhu_h() {
-    let kthulhu = new PIXI.Sprite.from("cthulhu.png")
 
+    let kthulhu = new PIXI.Sprite.from("cthulhu.png")
+    kthulhu.anchor.set(0.5);
     kthulhu.height = 150;
     kthulhu.width = 150;
-    kthulhu.x = guessBlock / 2;
-    kthulhu.y = guessBlock / 2;
+    kthulhu.x = app.view.width / 2;
+    kthulhu.y = app.view.height / 2;
 
-    return kthulhu;
+
+
+
+    
+    //FOR MOUSE
+    
+
+    app.stage.interactive = true;
+    app.stage.on("pointermove", movePlayer);
+    
+ 
+function movePlayer(e) {
+    let pos = e.data.global;
+
+    kthulhu.x = pos.x;
+    kthulhu.y = pos.y;
 }
 
-let khthulhumonster = kthulhu_h();
-app.stage.addChild(khthulhumonster);
+ //FOR CLICK
+   var score = 1;
+   const scoreText = new PIXI.Text(score);
+   
+
+    scoreText.anchor.set(0.5);
+    scoreText.x = 90;
+    scoreText.y = 120;
+
+    kthulhu.interactive = true;
+    kthulhu.on("mousedown", onClick);
+    kthulhu.on("mouseup", function(){
+        kthulhu.scale.x *= 1.05;
+        kthulhu.scale.y *= 1.05;
+    });
+
+   app.stage.addChild(kthulhu);
+   app.stage.addChild(scoreText);
+
+function onClick(){
+    score++;
+    kthulhu.scale.x /= 1.05;
+    kthulhu.scale.y /= 1.05;
+    scoreText.text  = score;
+}
+
+ 
 
 //for monster zone
-function zone() {
+
 function monsterBlock2(x, y){
 
     const block2 = PIXI.Sprite.from("monsterzone.png");
@@ -88,7 +128,7 @@ function monsterBlock2(x, y){
 
 for (let i = 0; i < 4; i++) {
   
-    const w2 = window.innerWidth - 705;
+    const w2 = window.innerWidth + 625;
     const h2 = window.innerHeight - 550;
 
     let monsterBlock_M2  = monsterBlock2(w2 / 2 + 125 * (i % 1) - 1 / 2 * 125,
@@ -99,13 +139,66 @@ for (let i = 0; i < 4; i++) {
 }
 
 
-}
-const forzone = zone()
-app.stage.addChild(forzone);
-
-
-
 // for monster zone2
-const forzone2 = forzone;
 
-app.stage.addChild(forzone2);
+    function monsterBlock3(x, y){
+    
+        const block3 = PIXI.Sprite.from("monsterzone.png");
+        const monster3 =  PIXI.Sprite.from("monster.png");
+    
+        monster3.height = 50;
+        monster3.width = 50;
+        monster3.x = block3.x + 10;
+        monster3.y = block3.y + 10;
+    
+        guessBlock3 = new PIXI.Container();
+        guessBlock3.addChild(block3);
+        guessBlock3.addChild(monster3);
+        guessBlock3.interactive = true;
+    
+        guessBlock3.x = x;
+        guessBlock3.y = y;
+    
+        return guessBlock3;
+    
+    }
+    
+    
+    
+    for (let i = 0; i < 4; i++) {
+      
+        const w3 = window.innerWidth - 705;
+        const h3 = window.innerHeight - 550;
+    
+        let monsterBlock_M3  = monsterBlock3(w3 / 2 + 125 * (i % 1) - 1 / 2 * 125,
+        h3 - h3 / 3 + 125 * Math.floor(i / 1,));
+      
+        app.stage.addChild(monsterBlock_M3);
+       
+    }
+    //experement
+    function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+    }
+
+    let randomforquantity = getRandomIntInclusive(0, 4);
+    let randomforposition = getRandomIntInclusive(100, 600);
+    
+    function hours1(posx, posy){
+    let hourse = new PIXI.Sprite.from("cthulhu.png");
+    hourse.width = 150;
+    hourse.height = 150;
+    hourse.x = posx;
+    hourse.y = posy;
+
+    return hourse;
+    }
+    let ggg = hourse1(randomforposition, randomforposition);
+    
+    for (let i = 0; i < randomforquantity; i++) {
+        
+       app.stage.addChild(hourse1);
+    }
+    
