@@ -195,10 +195,10 @@ for (let i = 0; i < 4; i++) {
 
     return hourse;
     }
-    let ggg = hourse1(randomforposition, randomforposition);
+    
     
     for (let i = 0; i < randomforquantity; i++) {
-        
-       app.stage.addChild(hourse1);
+        let ggg = hours1(randomforposition, randomforposition);
+       app.stage.addChild(ggg);
     }
     
