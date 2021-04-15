@@ -85,7 +85,7 @@ function movePlayer(e) {
         kthulhu.scale.y *= 1.05;
     });
 
-   
+   app.stage.addChild(kthulhu);
    app.stage.addChild(scoreText);
 
 function onClick(){
@@ -146,9 +146,6 @@ for (let i = 0; i < 4; i++) {
     let monsterBlock_M2  = monsterBlock2(w2 / 2 + 125 * (i % 1) - 1 / 2 * 125,
     h2 - h2 / 3 + 125 * Math.floor(i / 1,));
   
-    
-
-
     app.stage.addChild(monsterBlock_M2);
    
 }
@@ -187,67 +184,56 @@ for (let i = 0; i < 4; i++) {
         let monsterBlock_M3  = monsterBlock3(w3 / 2 + 125 * (i % 1) - 1 / 2 * 125,
         h3 - h3 / 3 + 125 * Math.floor(i / 1));
         
-    
 
-
-
-
-        let forx = monsterBlock_M3.x;
-        let fory = monsterBlock_M3.y;
-
-
-       
-
+        let forx = w3;
+        let fory = h3;
         console.log(forx, fory);
-        
         app.stage.addChild(monsterBlock_M3);
-        let randomforquantity = getRandomIntInclusive(0, 4);   
-        for (let i = 0; i < randomforquantity; i++) {
-
-            let hourse = new PIXI.Sprite.from("monster.png");
-           hourse.width = 50;
-           hourse.height = 50;
        
-           
-           let randomforpositioninbox = getRandomIntInclusive(1, 50);
-           let randomforpositionx = getRandomIntInclusive(forx + randomforpositioninbox , forx + randomforpositioninbox );
-           let randomforpositiony = getRandomIntInclusive(forx + randomforpositioninbox, forx + randomforpositioninbox);
-   
-           hourse.x = randomforpositionx;
-           hourse.y = randomforpositiony;
-           
-            
-           //let ggg = hours1(randomforpositionx, randomforpositiony);
-          app.stage.addChild(hourse);
-          console.log(hourse);
-       }
-
 
        
     }
     // function for random monster 
-   
+    function randommonster(){
 
     function getRandomIntInclusive(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
     }
-   
+    let randomforquantity = getRandomIntInclusive(0, 4);
     
      
    
-//experement
-    // function hours1(posx, posy){
-   
 
-    /*return hourse;
+    function hours1(posx, posy){
+    let hourse = new PIXI.Sprite.from("monster.png");
+    hourse.width = 50;
+    hourse.height = 50;
+    
+    hourse.x = posx;
+    hourse.y = posy;
+
+    return hourse;
     }
-    */
     
     
-    app.stage.addChild(kthulhu);
+    for (let i = 0; i < randomforquantity; i++) {
+        let randomforpositionx = getRandomIntInclusive(100, 600);
+        let randomforpositiony = getRandomIntInclusive(100, 600);
 
-        
 
+        let ggg = hours1(randomforpositionx, randomforpositiony);
+       app.stage.addChild(ggg);
+      
+    }
+}
+        let sss = randommonster();
         
+        app.stage.addChild(sss); 
+
+        //example
+        
+        let example = new PIXI.Sprite.from("monster.png");
+        let exampleforbox = new PIXI.Sprite.from("squar.png");
+        app.stage.addChild(exampleforbox);
